@@ -12,6 +12,10 @@
   },
   "author": "Mehdi Chekori",
   "license": "ISC",
+  "dependencies":{
+    "socket.io":"*",
+    "express":"*"
+  },
   "bugs": {
     "url": "https://github.com/mehdichekori/IOChat/issues"
   },

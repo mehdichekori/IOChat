@@ -5,3 +5,10 @@ var io = require('socket.io').listen(server);
 
 users = [];
 connections = [];
+
+server.listen(process.env.Port || 3000);
+console.log('server running');
+
+app.get('/',function(req,res){
+  res.sendFile(__dirname + '/index.html');
+});
