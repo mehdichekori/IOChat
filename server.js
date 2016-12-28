@@ -21,6 +21,9 @@ io.sockets.on('connection', function(socket){
   console.log('Connected: %s sockets connected', connections.length);
 
   //on disconnect
-  connections.splice(connections.indexOf(socket), 1);
-  console.log('Disconected: %s sockets connected', connections.length);
+  socket.on('disconnect',function(data){
+    connections.splice(connections.indexOf(socket), 1);
+    console.log('Disconected: %s sockets connected', connections.length);
+  });
+
 })
