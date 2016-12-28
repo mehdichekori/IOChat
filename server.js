@@ -10,10 +10,6 @@ server.listen(process.env.Port || 3000);
 console.log('server running');
 
 app.use(express.static('public'));
-// app.get('/',function(req,res){
-//   res.sendFile(__dirname + '/public/index.html');
-//   //res.sendFile(__dirname + '/Style/style.css');
-// });
 
 io.sockets.on('connection', function(socket){
   //on connect
@@ -22,14 +18,26 @@ io.sockets.on('connection', function(socket){
 
   //on disconnect
   socket.on('disconnect',function(data){
+    users.splice(users.indexOf(socket.username), 1);
+    updateUsernames();
     connections.splice(connections.indexOf(socket), 1);
     console.log('Disconected: %s sockets connected', connections.length);
   });
+  // on message sent
   socket.on('send message', function(data){
     console.log(data);
-    io.sockets.emit('new message',{msg:data});
+    io.sockets.emit('new message',{msg:data, user:socket.username});
   });
-  socket.on('new message',function(data){
-    $chat.append('<div class="well">'+data+'</div>')
+
+  //new user
+  socket.on('new user', function(data, callback){
+    callback(true);
+    socket.username = data;
+    users.push(socket.username);
+    updateUsernames();
   });
-})
+
+  function updateUsernames(){
+    io.sockets.emit('get users', users);
+  }
+});
