@@ -6,7 +6,7 @@ var io = require('socket.io').listen(server);
 users = [];
 connections = [];
 
-server.listen(process.env.Port || 3000);
+server.listen(process.env.PORT || CONFIG.port); 
 console.log('server running');
 
 app.use(express.static('public'));
