@@ -17,7 +17,8 @@ $(function(){
   });
 
   socket.on('new message',function(data){
-    $chat.append('<div class="well"><strong>'+data.user+':</strong> '+data.msg+'</div>')
+    $chat.append('<div class="well"><strong>'+data.user+':</strong> '+data.msg+'</div>');
+    updateScroll();
   });
 
   $userForm.submit(function(e){
@@ -48,5 +49,9 @@ $(function(){
   function submitMessage(){
     socket.emit('send message',$message.val());
     $message.val('');
+  }
+    function updateScroll(){
+    var element = document.getElementById("chat");
+    element.scrollTop = element.scrollHeight;
   }
 });
