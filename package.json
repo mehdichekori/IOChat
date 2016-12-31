@@ -14,7 +14,8 @@
   "license": "ISC",
   "dependencies":{
     "socket.io":"*",
-    "express":"*"
+    "express":"*",
+    "jquery":"*"
   },
   "bugs": {
     "url": "https://github.com/mehdichekori/IOChat/issues"
