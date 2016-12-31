@@ -9,7 +9,7 @@ connections = [];
 server.listen(process.env.PORT || CONFIG.port); 
 console.log('server running');
 
-app.use(express.static('public'));
+app.use(express.static('/public'));
 
 io.sockets.on('connection', function(socket){
   //on connect
