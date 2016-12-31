@@ -10,6 +10,8 @@ server.listen(process.env.PORT || CONFIG.port);
 console.log('server running');
 
 app.use(express.static('public'));
+app.use(express.static('public/Scripts/'));
+app.use(express.static('public/Style/'));
 
 io.sockets.on('connection', function(socket){
   //on connect
