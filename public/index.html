@@ -1,26 +1,25 @@
 <html>
 <head>
-  <title>IO Chat</title>
+  <title>MCK Chat</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="/Style/style.css"/>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
   <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
-  <script src="/Scripts/logic.js"></script>
+  <script src="../scripts/logic.js"></script>
 
 </head>
 <body>
   <div class="container">
     <div id="userFormArea" class="row">
-      <div class="col-md-12">
-        <form id="userForm">
-          <div class="form-group">
-            <label>Enter UserName</label>
-            <input class="form-control" id="username"/>
-            <br>
-            <input type="submit" class="btn btn-primary" value="Login"/>
-          </div>
+        <form id="userForm" class="loginform">
+          <p class="clearfix">
+              <label for="login">Username</label>
+              <input type="text" name="login" id="username" placeholder="Username">
+          </p>
+          <p class="clearfix">
+              <input type="submit" name="submit" value="Login">
+          </p>
         </form>
-      </div>
     </div>
     <br>
     <div id="messageArea" class="row">
@@ -45,5 +44,6 @@
         </div>
       </div>
     </div>
-  </body>
-  </html>
+  </div>
+</body>
+</html>
