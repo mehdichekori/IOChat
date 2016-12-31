@@ -2,9 +2,9 @@
   display:none;
 }
 #message{
-  height:132px;
+  height:50px;
 }
 #chat{
-  height 500px;
+  height:300px;
   overflow-y: scroll;
 }
