@@ -17,7 +17,7 @@ $(function(){
   });
 
   socket.on('new message',function(data){
-    $chat.append('<div class="well"><strong>'+data.user+':</strong> '+data.msg+'</div>');
+    $chat.append('<p><strong>'+data.user+':</strong> '+data.msg+'</p>');
     updateScroll();
   });
 
@@ -27,6 +27,7 @@ $(function(){
       if(data){
         $userFormArea.hide();
         $messageArea.show();
+        $('body').css('background-image', 'url(' + '/images/blue.png' + ')');
       }
     });
     $username.val('');
