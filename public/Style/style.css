@@ -8,6 +8,9 @@
   height:300px;
   overflow-y: scroll;
 }
+#enterMsg{
+  color:white;
+}
 body {
 				background: #563c55 url(/images/blurred.jpg) no-repeat center top;
 				-webkit-background-size: cover;
