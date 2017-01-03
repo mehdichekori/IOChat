@@ -16,15 +16,20 @@ $(function(){
     $message.val('');
   });
 
-  socket.on('new message',function(data){
-    $chat.append('<p><strong>'+data.user+':</strong> '+data.msg+'</p>');
+  socket.on('user connect',function(data){
+    $chat.append('<p>'+data.user+' has joined the chat. </p>');
     updateScroll();
   });
   
   socket.on('user disconnect',function(data){
     $chat.append('<p>'+data.user+' has left the chat. </p>');
     updateScroll();
-  })
+  });
+  
+    socket.on('new message',function(data){
+    $chat.append('<p><strong>'+data.user+':</strong> '+data.msg+'</p>');
+    updateScroll();
+  });
 
   $userForm.submit(function(e){
     e.preventDefault();
