@@ -8,6 +8,8 @@ $(function(){
   var $userForm = $('#userForm');
   var $users = $('#users');
   var $username = $('#username');
+  var $onlineUsers =$('#onlineUsers');
+  var onlineUsersCount=0;
 
 
   $messageForm.submit(function(e){
@@ -16,19 +18,21 @@ $(function(){
     $message.val('');
   });
 
-  socket.on('user connect',function(data){
-    $chat.append('<p>'+data.user+' has joined the chat. </p>');
-    updateScroll();
-  });
-  
-  socket.on('user disconnect',function(data){
-    $chat.append('<p>'+data.user+' has left the chat. </p>');
-    updateScroll();
-  });
-  
-    socket.on('new message',function(data){
+  socket.on('new message',function(data){
     $chat.append('<p><strong>'+data.user+':</strong> '+data.msg+'</p>');
     updateScroll();
+  });
+  socket.on('user connect',function(data){
+    $chat.append('<p><strong>'+data.user+' </strong> has joined the chat. </p>');
+    updateScroll();
+    onlineUsersCount++;
+    $('#onlineUsers').text('Online Users ('+onlineUsersCount+')');
+  });
+  socket.on('user disconnect',function(data){
+    $chat.append('<p><strong>'+data.user+' </strong> has left the chat. </p>');
+    updateScroll();
+    onlineUsersCount--;
+    $('#onlineUsers').text('Online Users ('+onlineUsersCount+')');
   });
 
   $userForm.submit(function(e){
@@ -61,7 +65,7 @@ $(function(){
     socket.emit('send message',$message.val());
     $message.val('');
   }
-    function updateScroll(){
+  function updateScroll(){
     var element = document.getElementById("chat");
     element.scrollTop = element.scrollHeight;
   }
