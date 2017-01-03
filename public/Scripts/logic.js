@@ -20,6 +20,11 @@ $(function(){
     $chat.append('<p><strong>'+data.user+':</strong> '+data.msg+'</p>');
     updateScroll();
   });
+  
+  socket.on('user disconnect',function(data){
+    $chat.append('<p>'+data.user+' has left the chat. </p>');
+    updateScroll();
+  })
 
   $userForm.submit(function(e){
     e.preventDefault();
