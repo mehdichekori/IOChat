@@ -9,7 +9,10 @@ $(function(){
   var $users = $('#users');
   var $username = $('#username');
   var $onlineUsers =$('#onlineUsers');
+  var $status = $('#status');
   var onlineUsersCount=0;
+  var lastTyped; // in milliseconds from 1/1/1970 20000 = to 20 secs
+  var typing = false;
 
 
   $messageForm.submit(function(e){
@@ -34,6 +37,13 @@ $(function(){
     onlineUsersCount--;
     $('#onlineUsers').text('Online Users ('+onlineUsersCount+')');
   });
+  socket.on('update status',function(data){
+    $status.text('');
+    if(data.typing){
+      $status.append(data.user+' is typing..');
+    }else
+      $status.text('');
+  })
 
   $userForm.submit(function(e){
     e.preventDefault();
@@ -56,8 +66,13 @@ $(function(){
   });
 
   $message.on('keypress', function (e){
-    if (e.keyCode == 13){
+    console.log('user is typing');
+
+    if (e.keyCode == 13){ //add remove key
       submitMessage();
+      checkIfHasStoppedTyping(false);
+    }else{
+      isTyping();
     }
   });
 
@@ -68,5 +83,19 @@ $(function(){
   function updateScroll(){
     var element = document.getElementById("chat");
     element.scrollTop = element.scrollHeight;
+  }
+  function isTyping(){
+    typing=true;
+    lastTyped = new Date().getTime();
+    socket.emit('user is typing');
+    var timeout=setTimeout(checkIfHasStoppedTyping,5000);
+
+  }
+  function checkIfHasStoppedTyping(typing){
+    var currentTime = new Date().getTime();
+    if (currentTime - lastTyped>5000 && !typing){ //checks if the lasttyped time was more than 10 secs ago
+      socket.emit('user has stopped typing');
+          typing = false;
+    }
   }
 });
