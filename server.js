@@ -45,4 +45,13 @@ io.sockets.on('connection', function(socket){
   function updateUsernames(){
     io.sockets.emit('get users', users);
   }
+  
+    socket.on('user is typing', function(data, callback){
+    console.log(socket.username +' is typing..');
+    io.sockets.emit('update status',{user:socket.username, typing:true});
+  });
+  socket.on('user has stopped typing', function (data, callback){
+    console.log(socket.username +' has stopped typing.');
+    io.sockets.emit('update status',{user:socket.username, typing:false});
+  });
 });
