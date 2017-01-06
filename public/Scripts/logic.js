@@ -61,7 +61,7 @@ $(function(){
   socket.on('get users', function(data){
     var html = '';
     for(i = 0;i<data.length;i++){
-      html += '<li class="list-group-item">'+data[i]+'</li>'
+      html += '<li><a>'+data[i]+'</a></li>'
     }
     $users.html(html);
   });
