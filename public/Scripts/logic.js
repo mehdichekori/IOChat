@@ -34,7 +34,8 @@ $(function(){
   socket.on('user disconnect',function(data){
     $chat.append('<p><strong>'+data.user+' </strong> has left the chat. </p>');
     updateScroll();
-    onlineUsersCount--;
+    if (onlineUsersCount>1)
+        onlineUsersCount--;
     $('#onlineUsers').text('Online Users ('+onlineUsersCount+')');
   });
   socket.on('update status',function(data){
