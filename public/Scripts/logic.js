@@ -52,7 +52,7 @@ $(function(){
       if(data){
         $userFormArea.hide();
         $messageArea.show();
-        $('body').css('background-image', 'url(' + '/images/blurred-min.jpg' + ')');
+        $('body').css('background-image', 'url(' + '/images/white.jpg' + ')');
       }
     });
     $username.val('');
