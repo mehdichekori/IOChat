@@ -11,16 +11,10 @@ $(function(){
   var $onlineUsers =$('#onlineUsers');
   var $status = $('#status');
   var onlineUsersCount=0;
-  var lastTyped; // in milliseconds from 1/1/1970 20000 = to 20 secs
+  var lastTyped; // in milliseconds from 1/1/1970 1000ms = 1 sec
   var typing = false;
 
-
-  $messageForm.submit(function(e){
-    e.preventDefault();
-    socket.emit('send message',$message.val());
-    $message.val('');
-  });
-
+//socket events
   socket.on('new message',function(data){
     $chat.append('<p><strong>'+data.user+':</strong> '+data.msg+'</p>');
     updateScroll();
@@ -45,7 +39,19 @@ $(function(){
     }else
       $status.text('');
   })
-
+  socket.on('get users', function(data){
+    var html = '';
+    for(i = 0;i<data.length;i++){
+      html += '<li><a class="connectedUser"> ' + data[i] + '</a></li>'
+    }
+    $users.html(html);
+  });
+//user events
+  $messageForm.submit(function(e){
+    e.preventDefault();
+    socket.emit('send message',$message.val());
+    $message.val('');
+  });
   $userForm.submit(function(e){
     e.preventDefault();
     socket.emit('new user',$username.val(), function(data){
@@ -57,22 +63,17 @@ $(function(){
     });
     $username.val('');
   });
-
-  socket.on('get users', function(data){
-    var html = '';
-    for(i = 0;i<data.length;i++){
-      html += '<li><a> ' + data[i] + '</a></li>'
-    }
-    $users.html(html);
-  });
-
   $message.on('keypress', function (e){
-    console.log('user is typing');
-
     isTyping();
     checkIfHasStoppedTyping(typing);
   });
-
+  $(document).on('click', '#users li a', function(e){
+      e.preventDefault();
+      //$chat.append('<p>creating a private chat</p>');
+      //$chat.append('<p>https://mckchat.com/room/?'+makeid()+'');
+      $chat.append('<p><strong>ChatBot</strong> Clicking on a username will let you privatly chat with them, it will be avaible soon.</p>');
+  }); 
+//functions
   function submitMessage(){
     socket.emit('send message',$message.val());
     $message.val('');
@@ -101,5 +102,8 @@ $(function(){
       for( var i=0; i < 5; i++ )
           text += possible.charAt(Math.floor(Math.random() * possible.length));
       return text;
+      //add every generated id to a list
+      //after generating an id check if its in the list
+      //if not send it to the user, if it already exist generate a new id
   }
 });
