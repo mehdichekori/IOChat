@@ -24,6 +24,8 @@ $(function(){
     updateScroll();
     onlineUsersCount++;
     $('#onlineUsers').text('Online Users ('+onlineUsersCount+')');
+    $chat.append('<p><strong>ChatBot:</strong> Welcome '+data.user+'</p>');
+    //add a list of welcome message to chose from
   });
   socket.on('user disconnect',function(data){
     $chat.append('<p><strong>'+data.user+' </strong> has left the chat. </p>');
@@ -71,8 +73,8 @@ $(function(){
       e.preventDefault();
       //$chat.append('<p>creating a private chat</p>');
       //$chat.append('<p>https://mckchat.com/room/?'+makeid()+'');
-      $chat.append('<p><strong>ChatBot</strong> Clicking on a username will let you privatly chat with them, it will be avaible soon.</p>');
-  }); 
+      $chat.append('<p><strong>ChatBot:</strong> This will let you chat privatly with someon, it will be avaible soon.</p>');
+  });
 //functions
   function submitMessage(){
     socket.emit('send message',$message.val());
