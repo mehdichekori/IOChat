@@ -16,11 +16,11 @@
 }
 
 body {
-				background: #563c55 url(/images/blurred.jpg) no-repeat center top;
-				-webkit-background-size: cover;
-				-moz-background-size: cover;
-				background-size: cover;
-        font-family: 'Ubuntu', 'Lato', sans-serif;
+    background: #563c55 url(/images/blurred.jpg) no-repeat center top;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    font-family: 'Ubuntu', 'Lato', sans-serif;
 			}
 .loginform {
     font-family: 'Ubuntu', 'Lato', sans-serif;
