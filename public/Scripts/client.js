@@ -61,7 +61,7 @@ $(function(){
   socket.on('get users', function(data){
     var html = '';
     for(i = 0;i<data.length;i++){
-      html += '<li><a>'+data[i]+'</a></li>'
+      html += '<li><a> ' + data[i] + '</a></li>'
     }
     $users.html(html);
   });
@@ -69,12 +69,8 @@ $(function(){
   $message.on('keypress', function (e){
     console.log('user is typing');
 
-    if (e.keyCode == 13){ //add remove key
-      submitMessage();
-      checkIfHasStoppedTyping(false);
-    }else{
-      isTyping();
-    }
+    isTyping();
+    checkIfHasStoppedTyping(typing);
   });
 
   function submitMessage(){
@@ -98,5 +94,12 @@ $(function(){
       socket.emit('user has stopped typing');
           typing = false;
     }
+  }
+  function makeid(){
+      var text = "";
+      var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      for( var i=0; i < 5; i++ )
+          text += possible.charAt(Math.floor(Math.random() * possible.length));
+      return text;
   }
 });
