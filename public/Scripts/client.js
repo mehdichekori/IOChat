@@ -89,12 +89,12 @@ $(function(){
     typing=true;
     lastTyped = new Date().getTime();
     socket.emit('user is typing');
-    var timeout=setTimeout(checkIfHasStoppedTyping,3000);
+    var timeout=setTimeout(checkIfHasStoppedTyping,1000);
 
   }
   function checkIfHasStoppedTyping(typing){
     var currentTime = new Date().getTime();
-    if (currentTime - lastTyped>3000 && !typing){ //checks if the lasttyped time was more than 10 secs ago
+    if (currentTime - lastTyped>1000 && !typing){ //checks if the lasttyped time was more than 10 secs ago
       socket.emit('user has stopped typing');
           typing = false;
     }
