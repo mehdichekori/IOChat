@@ -1,13 +1,9 @@
 <html>
 <head>
   <title>MCK Chat</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
   <link rel="stylesheet" href="/Style/style.css"/>
   <link rel="stylesheet" href="/Style/css.scss"/>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
-  <script src="/Scripts/logic.js"></script>
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
 </head>
 <body>
   <div class="container">
@@ -15,7 +11,7 @@
         <form id="userForm" class="loginform">
           <p class="clearfix">
               <label for="login">Username</label>
-              <input type="text" name="login" id="username" placeholder="Username" required>
+              <input type="text" name="login" id="username" placeholder="Username" required >
           </p>
           <p class="clearfix">
               <input type="submit" name="submit" value="Login">
@@ -38,14 +34,17 @@
             <label id="status"></label>
             <div class="form-group">
               <label id="enterMsg">Enter Message</label>
-              <textarea class="form-control" id="message"></textarea>
+              <input type="text" class="form-control" id="message"></input>
               <br>
-              <input type="submit" class="btn btn-primary" value="Send Message"/>
+              <input type="submit" id="btnSend" class="btn btn-primary" value="Send Message"/>
             </div>
           </form>
         </div>
       </div>
     </div>
   </div>
-</body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+  <script src="/Scripts/client.js"></script>
+</body
 </html>
