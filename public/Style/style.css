@@ -3,10 +3,16 @@
 }
 #message{
   height:30px;
+  resize:none;
+  width:80%;
 }
 #chat{
   height:300px;
   overflow-y: scroll;
+}
+#btnSend{
+  float:right;
+  margin-top: -50px;
 }
 
 body {
