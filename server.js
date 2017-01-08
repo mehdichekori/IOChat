@@ -39,6 +39,7 @@ io.sockets.on('connection', function(socket){
     socket.username = data;
     users.push(socket.username);
     io.sockets.emit('user connect',{user:socket.username});
+    console.log(socket.username +' has connected with the ip :'+socket.request.connection.remoteAddress);
     updateUsernames();
   });
 
