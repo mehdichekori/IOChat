@@ -73,7 +73,7 @@ $(function(){
       e.preventDefault();
       //$chat.append('<p>creating a private chat</p>');
       //$chat.append('<p>https://mckchat.com/room/?'+makeid()+'');
-      $chat.append('<p><strong>ChatBot:</strong> This will let you chat privatly with someon, it will be avaible soon.</p>');
+      $chat.append('<p><strong>ChatBot:</strong> This will let you chat privatly with someone, it will be avaible soon.</p>');
   });
 //functions
   function submitMessage(){
